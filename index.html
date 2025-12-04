@@ -1,92 +1,398 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>IT Growth Kit für IT-Berater</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <title>IT Growth Kit – Mehr IT-Projekte. Weniger Zufall.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="IT Growth Kit: Mehr Projekte für IT-Berater im Mittelstand – mit Landingpage, Lead-Magnet, Content & Outbound in 24h.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --color-bg: #020617;
+      --color-accent: #3b82f6;
+      --color-accent-strong: #1d4ed8;
+      --color-text: #f9fafb;
+      --color-muted: #94a3b8;
+      --radius: 12px;
+    }
+    * { box-sizing:border-box; margin:0; padding:0; }
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #020617;
-      color: white;
+      background: radial-gradient(circle at top, #0f172a, #020617 70%);
+      color: var(--color-text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
     }
-    header, footer {
-      background-color: #0b1020;
-      padding: 20px;
-      text-align: center;
+    a {
+      color: inherit;
+      text-decoration:none;
     }
-    h1 {
-      margin: 0;
-      font-size: 32px;
+    header {
+      position: sticky; top:0;
+      background: rgba(2,6,23,0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(51,65,85,0.7);
+      padding: 12px 24px;
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      z-index:50;
     }
-    main {
-      padding: 20px;
-      max-width: 800px;
-      margin: auto;
+    header .logo {
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-weight:600;
+      font-size:18px;
     }
-    section {
-      margin-bottom: 40px;
+    header nav {
+      display:flex;
+      gap:16px;
+      align-items:center;
+    }
+    header nav a {
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:14px;
+      color: var(--color-muted);
+      transition:color .2s;
+    }
+    header nav a:hover {
+      color: var(--color-text);
     }
     .btn {
-      display: inline-block;
-      background: #3b82f6;
-      padding: 10px 20px;
-      border-radius: 8px;
-      color: white;
-      text-decoration: none;
+      padding: 10px 16px;
+      border-radius:999px;
+      background: linear-gradient(135deg, var(--color-accent), var(--color-accent-strong));
+      color:#fff; border:none; cursor:pointer;
+      font-weight:500; font-size:14px;
+      box-shadow:0 10px 30px rgba(59,130,246,0.6);
+      transition:transform .2s, box-shadow .2s;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+    }
+    .btn:hover {
+      transform:translateY(-2px);
+      box-shadow:0 14px 40px rgba(59,130,246,0.8);
+    }
+    .hero {
+      padding:80px 20px;
+      text-align:center;
+      background:
+        radial-gradient(circle at 20% 0, rgba(59,130,246,0.3), transparent 50%),
+        radial-gradient(circle at 80% 0, rgba(16,185,129,0.3), transparent 60%),
+        rgba(15,23,42,0.9);
+    }
+    .hero h1 {
+      font-size: clamp(32px,6vw,48px);
+      line-height:1.2;
+      max-width:720px;
+      margin:0 auto 16px;
+    }
+    .hero h1 span {
+      background: linear-gradient(90deg, #93c5fd, #60a5fa, #22c55e);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .hero p {
+      max-width:600px;
+      margin:0 auto 24px;
+      color: var(--color-muted);
+      font-size: 16px;
+    }
+    .section {
+      padding:60px 20px;
+      max-width:1100px;
+      margin:0 auto;
+    }
+    .section h2 {
+      font-size:28px;
+      margin-bottom:12px;
+    }
+    .section p.lead {
+      color: var(--color-muted);
+      font-size: 16px;
+      margin-bottom:30px;
+    }
+    .features {
+      display:grid;
+      gap:20px;
+      grid-template-columns: repeat(auto-fill, minmax(280px,1fr));
+    }
+    .card {
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(51,65,85,0.8);
+      border-radius: var(--radius);
+      padding:20px;
+      box-shadow:0 12px 24px rgba(0,0,0,0.5);
+    }
+    .card h3 {
+      margin-bottom:10px;
+      font-size:18px;
+    }
+    .card ul {
+      list-style: none;
+      padding:0;
+    }
+    .card ul li {
+      padding-left:20px;
+      position: relative;
+      margin-bottom:6px;
+      color: var(--color-muted);
+    }
+    .card ul li::before {
+      content:"\u2714";
+      position: absolute;
+      left:0;
+      top:0;
+      color: #22c55e;
+      font-size:14px;
+    }
+    .pricing {
+      display: grid;
+      gap:20px;
+      grid-template-columns: repeat(auto-fill,minmax(320px,1fr));
+    }
+    .price-card {
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(51,65,85,0.8);
+      border-radius: var(--radius);
+      padding:20px;
+      box-shadow:0 12px 24px rgba(0,0,0,0.5);
+    }
+    .price-card h3 {
+      margin-bottom:8px;
+      font-size:20px;
+    }
+    .price {
+      font-size:32px;
+      font-weight:700;
+      margin:8px 0;
+    }
+    .faq-item {
+      margin-bottom:16px;
+    }
+    .faq-item h3 {
+      font-size:16px;
+      margin-bottom:4px;
+    }
+    .faq-item p {
+      color: var(--color-muted);
+      font-size: 14px;
     }
     form {
       display: grid;
-      gap: 10px;
+      gap:12px;
     }
-    input, textarea {
-      padding: 10px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
+    form label {
+      font-size: 14px;
+      color: var(--color-muted);
     }
-    button {
-      padding: 10px;
-      background: #3b82f6;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
+    form input, form textarea {
+      width:100%;
+      padding:9px 12px;
+      border-radius: var(--radius);
+      border:1px solid rgba(51,65,85,0.8);
+      background: rgba(30,41,59,0.9);
+      color:var(--color-text);
+      font-size:14px;
+      resize:vertical;
+    }
+    footer {
+      border-top:1px solid rgba(51,65,85,0.8);
+      padding:20px;
+      text-align:center;
+      font-size:12px;
+      color:var(--color-muted);
     }
   </style>
 </head>
 <body>
-<header>
-  <h1>IT Growth Kit</h1>
-  <p>Mehr qualifizierte IT-Projekte im Mittelstand</p>
-</header>
-<main>
-  <section>
-    <h2>Was du bekommst</h2>
-    <ul>
-      <li>Landingpage für dein IT-Angebot</li>
-      <li>Lead-Magnet: PDF-Outline</li>
-      <li>14 LinkedIn-Beiträge</li>
-      <li>5-teilige Outbound-Sequenz</li>
-    </ul>
+  <header>
+    <div class="logo">IT Growth Kit</div>
+    <nav class="nav-links">
+      <a href="#problem">Problem</a>
+      <a href="#solution">Lösung</a>
+      <a href="#deliverables">Was du bekommst</a>
+      <a href="#pricing">Preis</a>
+      <a href="#contact" class="btn">Gespräch anfragen</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Mehr <span>qualifizierte IT-Projekte</span> – mit einem klaren Lead-System in 24 Stunden.</h1>
+    <p>Du berätst mittelständische Unternehmen in Infrastruktur, Cloud & Security – aber deine Projekt-Pipeline hängt von Empfehlungen und Zufall ab? Ich baue dir in 24 Stunden ein komplettes Lead- und Termin-System.</p>
+    <a href="#contact" class="btn">15-Minuten-Kennenlern-Call anfragen</a>
   </section>
-  <section>
-    <h2>Kontakt</h2>
-    <form action="https://formspree.io/f/mvgeqpab" method="POST">
-      <input type="text" name="name" placeholder="Name" required>
-      <input type="email" name="email" placeholder="E-Mail" required>
-      <input type="text" name="company" placeholder="Unternehmen">
-      <textarea name="message" placeholder="Kurz zu deiner Situation"></textarea>
-      <input type="hidden" name="_subject" value="Neue Anfrage über IT-Growth-Kit Landingpage">
-      <button type="submit">Gespräch anfragen</button>
-    </form>
+
+  <section id="problem" class="section">
+    <h2>Empfehlungen sind gut – aber nicht planbar.</h2>
+    <p class="lead">Viele IT-Berater und IT-Dienstleister leben von Bestandskunden und Empfehlungen. Das funktioniert, bis Projekte enden, Budgets gekürzt werden oder „nichts Neues reinkommt“. Klassisches Marketing fühlt sich nach „Zeitfresser“ an – und bleibt deshalb liegen.</p>
+    <div class="features">
+      <div class="card">
+        <h3>Typische Probleme</h3>
+        <ul>
+          <li>Die Website ist eher Visitenkarte als Vertriebskanal</li>
+          <li>LinkedIn wird unregeläßig genutzt und ohne klare Botschaft</li>
+          <li>Outbound-Aktivitäten passieren nur „wenn Zeit ist“</li>
+          <li>Es gibt keine einfache Routine, wie jede Woche neue Gespräche entstehen</li>
+        </ul>
+      </div>
+    </div>
   </section>
-</main>
-<footer>
-  <p>&copy; <span id="year"></span> IT Growth Kit – Positionierung & Lead-Systeme für IT-Berater.</p>
-</footer>
-<script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>
+
+  <section id="solution" class="section">
+    <h2>Ein komplettes Lead-System, das zu deinem IT-Angebot passt.</h2>
+    <p class="lead">Statt monatelang an Website, Content und E-Mails herumzuschrauben, bekommst du in 24 Stunden ein fertiges System, das genau auf mittelständische Entscheider ausgerichtet ist – und auf dein Leistungsangebot.</p>
+    <div class="features">
+      <div class="card">
+        <h3>Landingpage</h3>
+        <p>Klare Struktur, klare Botschaft: Welche Probleme du löst, wie du arbeitest und warum sich eine Zusammenarbeit lohnt – inklusive Call-to-Action für Strategiegespräche.</p>
+      </div>
+      <div class="card">
+        <h3>Lead-Magnet</h3>
+        <p>Leitfaden „Die 7 größten IT-Risiken im Mittelstand“ als Download-Angebot, um E-Mail-Leads zu sammeln und Vertrauen aufzubauen.</p>
+      </div>
+      <div class="card">
+        <h3>Content & Outbound</h3>
+        <p>14 LinkedIn-Posts plus 5-teilige Outbound-Sequenz, damit du direkt sichtbar wirst und aktiv passende Entscheider ansprechen kannst.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="deliverables" class="section">
+    <h2>Was du konkret bekommst</h2>
+    <p class="lead">Das ist im 24-Stunden AI Growth Kit für IT-Berater enthalten. Alle Bausteine sind so gestaltet, dass du sie direkt nutzen kannst – oder in deine bestehende Website und deine bestehenden Prozesse integrierst.</p>
+    <div class="features">
+      <div class="card">
+        <h3>Landingpage für dein Kernangebot</h3>
+        <ul>
+          <li>Headline, Subheadline, Nutzenargumentation & Einwandbehandlung</li>
+          <li>Struktur für mittelständische Entscheider</li>
+          <li>Texte, ready für WordPress, Webflow & Co.</li>
+        </ul>
+        <h3 style="margin-top:16px;">Lead-Magnet „IT-Risiken“</h3>
+        <ul>
+          <li>Ausformulierte Outline mit 5–7 Kapiteln</li>
+          <li>Formulierungen ohne Buzzword-Bingo</li>
+          <li>Vorschläge für Titel, Untertitel & CTAs im PDF</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>14 LinkedIn-Posts</h3>
+        <ul>
+          <li>Mix aus Authority-, Story-, Value- und CTA-Posts</li>
+          <li>Texte, die direkt auf dein Angebot und deine Zielkunden einzahlen</li>
+          <li>Empfohlene Posting-Frequenz & Themenplan</li>
+        </ul>
+        <h3 style="margin-top:16px;">Outbound-Sequenz</h3>
+        <ul>
+          <li>5 Nachrichten für E-Mail oder LinkedIn DMs</li>
+          <li>Aufbau: Einstieg, Mehrwert, Diagnose, Angebot, Reminder</li>
+          <li>Fokus auf Dialog statt aggressivem Pitching</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" class="section">
+    <h2>Klarer Umfang. Klare Preise.</h2>
+    <p class="lead">Keine offenen Stundensätze, keine vagen „Strategie-Pakete“. Du weißt genau, was du bekommst – und was es bringt: ein konkretes System, um mehr qualifizierte IT-Projekte anzuziehen.</p>
+    <div class="pricing">
+      <div class="price-card">
+        <h3>Pilot-Angebot</h3>
+        <p class="price">1.000 €<span style="font-size:14px; font-weight:400;"> zzgl. USt.</span></p>
+        <ul>
+          <li>Landingpage-Text für dein Kernangebot</li>
+          <li>Lead-Magnet „7 IT-Risiken im Mittelstand“ – ausgearbeitet</li>
+          <li>14 LinkedIn-Posts + 5-teilige Outbound-Sequenz</li>
+          <li>Lieferung innerhalb von 24 Stunden nach Briefing</li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <h3>Premium-Paket</h3>
+        <p class="price">1.500 €<span style="font-size:14px; font-weight:400;"> zzgl. USt.</span></p>
+        <ul>
+          <li>Alles aus dem Pilot-Angebot</li>
+          <li>30-minütiger Strategie-Call</li>
+          <li>1 Überarbeitungsrunde</li>
+          <li>Hilfe bei der Umsetzung in deinem Website-Tool</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="section">
+    <h2>Häufige Fragen</h2>
+    <div class="faq-item">
+      <h3>Ich habe bereits eine Website. Bringt mir das trotzdem etwas?</h3>
+      <p>Ja. Viele IT-Websites sind informativ, aber nicht auf Lead-Generierung optimiert. Wir können das Kit so bauen, dass es als eigenständige Landingpage oder als Ergänzung zu deiner bestehenden Seite funktioniert.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Muss ich danach jeden Tag Content erstellen?</h3>
+      <p>Nein. Das Kit gibt dir 14 Posts als Startpunkt und eine Struktur, wie du mit 2–3 Beiträgen pro Woche sichtbar bleibst. Wenn du möchtest, können wir später ein monatliches Content-Paket ergänzen.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Was ist, wenn mir die Texte nicht gefallen?</h3>
+      <p>Im Premium-Paket ist eine Überarbeitungsrunde enthalten, in der wir Tonalität und Schwerpunkte feinjustieren. Im Standard-Paket kannst du natürlich selbst weiter anpassen – die Basisarbeit ist erledigt.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Wie schnell kann ich das in der Praxis nutzen?</h3>
+      <p>In der Regel kannst du innerhalb weniger Tage live gehen: Landingpage integrieren, PDF designen, Posts einplanen und Outbound-Sequenz starten. Die Texte und Strukturen sind darauf ausgelegt.</p>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <h2>Lass uns 15 Minuten über dein IT-Angebot sprechen.</h2>
+    <p class="lead">Wenn du das Gefühl hast, dass deine Expertise stärker sichtbar sein sollte, ist dieses Gespräch ein guter Startpunkt.</p>
+    <div style="display:grid; gap:20px; grid-template-columns:repeat(auto-fill,minmax(320px,1fr));">
+      <div class="card">
+        <h3>Kostenloses Kennenlern-Gespräch anfragen</h3>
+        <p style="color:var(--color-muted); font-size:14px;">Fülle das Formular aus – ich melde mich in der Regel innerhalb von 24 Stunden mit einem Vorschlag für einen kurzen Call (oder schicke dir alternativ ein paar Einschätzungen per E-Mail).</p>
+        <form action="https://formspree.io/f/mvgeqpab" method="POST">
+          <div>
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Max Mustermann" required>
+          </div>
+          <div>
+            <label for="email">E-Mail</label>
+            <input id="email" name="email" type="email" placeholder="max@unternehmen.de" required>
+          </div>
+          <div>
+            <label for="company">Unternehmen</label>
+            <input id="company" name="company" type="text" placeholder="Muster GmbH">
+          </div>
+          <div>
+            <label for="message">Kurz zu deiner Situation</label>
+            <textarea id="message" name="message" placeholder="Z.B. Fokus, Zielkunden, aktueller Stand bei Leads ..." rows="4"></textarea>
+          </div>
+          <input type="hidden" name="_subject" value="Neue Anfrage über IT-Growth-Kit Landingpage">
+          <input type="hidden" name="_redirect" value="https://jonathanl0401.github.io/it-growth-kit-website/danke.html">
+          <button type="submit" class="btn">Gespräch anfragen</button>
+        </form>
+      </div>
+      <div class="card">
+        <h3>Was wir im Gespräch klären</h3>
+        <ul>
+          <li>Wie dein aktuelles Angebot und deine Zielgruppe aussehen</li>
+          <li>Wo du heute Leads und Projekte gewinnst – und wo nicht</li>
+          <li>Ob und wie das Growth Kit für dich sinnvoll ist</li>
+        </ul>
+        <h3 style="margin-top:20px;">Direkt-Link zu deinem Kalender</h3>
+        <p style="color:var(--color-muted); font-size:14px;">Hier könntest du z.&nbsp;B. einen Calendly- oder Microsoft-Bookings-Link einfügen.</p>
+        <a href="#" class="btn" style="display:inline-flex; width:auto;">Kalender-Link einfügen</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© <span id="year"></span> IT Growth Kit – Positionierung & Lead-Systeme für IT-Berater.</p>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
